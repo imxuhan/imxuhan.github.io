@@ -1,0 +1,57 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  locale?: "en" | "zh";
+  alternatePath?: string;
+}
+
+const {
+  title,
+  description = "Xu Han is a Ph.D. candidate working on memory systems, computer architecture, and performance modeling.",
+  locale = "en",
+  alternatePath = locale === "zh" ? "../" : "./zh/"
+} = Astro.props;
+const pathname = Astro.url.pathname;
+const isZh = locale === "zh";
+const pageTitle = title ? `${title} — ${isZh ? "徐晗" : "Xu Han"}` : isZh ? "徐晗 — 计算机体系结构" : "Xu Han — Computer Architecture";
+const depth = pathname.split("/").filter(Boolean).length;
+const localeHome = isZh
+  ? depth <= 1 ? "./" : "../".repeat(depth - 1)
+  : depth === 0 ? "./" : "../".repeat(depth);
+const labels = isZh
+  ? { about: "关于", publications: "论文", experience: "经历", blog: "博客", language: "EN" }
+  : { about: "About", publications: "Publications", experience: "Experience", blog: "Blog", language: "中文" };
+---
+
+<!doctype html>
+<html lang={locale === "zh" ? "zh-CN" : "en"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class="site-header shell">
+      <a class="brand" href={localeHome} aria-label={isZh ? "主页" : "Home"}>{isZh ? "徐晗" : "Xu Han"}</a>
+      <nav aria-label="Primary navigation">
+        <a href={`${localeHome}#about`}>{labels.about}</a>
+        <a href={`${localeHome}#publications`}>{labels.publications}</a>
+        <a href={`${localeHome}#experience`}>{labels.experience}</a>
+        <a href={`${localeHome}blog/`}>{labels.blog}</a>
+        <a class="language-link" href={alternatePath} lang={isZh ? "en" : "zh-CN"}>{labels.language}</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer shell">
+      <span>© 2026 {isZh ? "徐晗" : "Xu Han"}</span>
+      <a href="mailto:xuhan.2333@gmail.com">xuhan.2333@gmail.com</a>
+    </footer>
+  </body>
+</html>

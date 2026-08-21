@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  locale="zh"
+  alternatePath="../"
+  description="徐晗是中国科学院计算技术研究所博士研究生，研究方向包括存储系统、计算机体系结构与性能建模。"
+>
+  <div class="academic-page shell">
+    <header class="profile-head">
+      <h1>徐晗</h1>
+      <p>博士研究生 · 计算机体系结构</p>
+      <p>中国科学院计算技术研究所</p>
+      <p class="profile-links"><a href="mailto:xuhan.2333@gmail.com">xuhan.2333@gmail.com</a> · <a href="https://github.com/imxuhan">GitHub</a></p>
+    </header>
+
+    <section id="about">
+      <h2>关于我</h2>
+      <p>我是胡伟武研究员指导的博士研究生，主要研究存储系统、内存调度与性能建模，关注如何将体系结构设计落实到可实现的 RTL 与流片前评估中。</p>
+    </section>
+
+    <section id="education">
+      <h2>教育经历</h2>
+      <div class="entries">
+        <div class="entry"><span class="date">2021–2027</span><p><strong>计算机体系结构 博士</strong>，中国科学院计算技术研究所。</p></div>
+        <div class="entry"><span class="date">2017–2021</span><p><strong>计算机科学与技术 学士</strong>，中国科学院大学。</p></div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>论文发表</h2>
+      <ol class="publications">
+        <li><strong>CRAFT: Exploiting Precharge Cost Asymmetry for Adaptive DRAM Row Buffer Management.</strong><br /><u>Xu Han</u>, Ziyang Liu, Weitong Wang, Yuyangheng Wang, and Fuxin Zhang. <em>APPT 2026</em>，已录用。</li>
+        <li><strong>CoVE: Estimating Value-Predictor Coverage from Workload Entropy.</strong><br />Ziyang Liu, <u>Xu Han</u>, Junyu Yue, Chongxi Wang, and Fuxin Zhang. <em>ICCD 2026</em>，已录用。</li>
+        <li><strong>PSqueue: An Enhanced Memory Scheduling Queue Architecture for Multi-Threaded Streaming Memory Access.</strong><br /><u>Xu Han</u>, Weitong Wang, Yuyangheng Wang, and Huandong Wang. <em>HPCC 2024</em>。</li>
+      </ol>
+    </section>
+
+    <section id="experience">
+      <h2>实习经历</h2>
+      <div class="entries">
+        <div class="entry"><span class="date">2022.07–2025.05</span><p><strong>龙芯中科</strong>，数字前端设计实习生，负责内存控制器体系结构与 RTL 设计。</p></div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

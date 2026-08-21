@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="博客"
+  locale="zh"
+  alternatePath="../../blog/"
+  description="徐晗关于存储系统、性能分析与研究方法的技术笔记。"
+>
+  <div class="page shell">
+    <header class="page-head">
+      <h1>博客</h1>
+      <p>关于存储系统、性能分析与研究方法的技术笔记。</p>
+    </header>
+    <div class="blog-list">
+      <a href="./keeping-notes/">
+        <time datetime="2026-08-21">2026 年 8 月 21 日</time>
+        <div><h2>关于技术笔记</h2><p>为什么结论背后的推理过程往往比结论本身更有价值。</p></div>
+        <span>阅读 →</span>
+      </a>
+    </div>
+  </div>
+</BaseLayout>
