@@ -22,8 +22,8 @@ const localeHome = isZh
   ? depth <= 1 ? "./" : "../".repeat(depth - 1)
   : depth === 0 ? "./" : "../".repeat(depth);
 const labels = isZh
-  ? { about: "关于", publications: "论文", experience: "经历", blog: "博客", language: "EN" }
-  : { about: "About", publications: "Publications", experience: "Experience", blog: "Blog", language: "中文" };
+  ? { publications: "论文", blog: "博客", language: "EN" }
+  : { publications: "Publications", blog: "Blog", language: "中文" };
 ---
 
 <!doctype html>
@@ -39,9 +39,7 @@ const labels = isZh
     <header class="site-header shell">
       <a class="brand" href={localeHome} aria-label={isZh ? "主页" : "Home"}>{isZh ? "徐晗" : "Xu Han"}</a>
       <nav aria-label="Primary navigation">
-        <a href={`${localeHome}#about`}>{labels.about}</a>
         <a href={`${localeHome}#publications`}>{labels.publications}</a>
-        <a href={`${localeHome}#experience`}>{labels.experience}</a>
         <a href={`${localeHome}blog/`}>{labels.blog}</a>
         <a class="language-link" href={alternatePath} lang={isZh ? "en" : "zh-CN"}>{labels.language}</a>
       </nav>
