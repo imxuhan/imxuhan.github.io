@@ -3,41 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout alternatePath="./zh/">
-  <div class="academic-page shell">
-    <header class="profile-head">
-      <h1>Xu Han</h1>
-      <p>Ph.D. Candidate · Computer Architecture</p>
-      <p>Institute of Computing Technology, Chinese Academy of Sciences</p>
-      <p class="profile-links"><a href="mailto:xuhan.2333@gmail.com">xuhan.2333@gmail.com</a> · <a href="https://github.com/imxuhan">GitHub</a></p>
+  <div class="page shell">
+    <header class="page-head">
+      <h1>Blog</h1>
+      <p>Notes on memory systems, performance analysis, and research practice.</p>
     </header>
-
-    <section id="about">
-      <h2>About</h2>
-      <p>I am a Ph.D. candidate advised by Prof. Weiwu Hu. My research focuses on memory systems, memory scheduling, and performance modeling, with an emphasis on connecting architectural ideas to practical RTL implementation and pre-silicon evaluation.</p>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <div class="entries">
-        <div class="entry"><span class="date">2021–2027</span><p><strong>Ph.D. in Computer Architecture</strong>, Institute of Computing Technology, Chinese Academy of Sciences.</p></div>
-        <div class="entry"><span class="date">2017–2021</span><p><strong>B.S. in Computer Science and Technology</strong>, University of Chinese Academy of Sciences.</p></div>
-      </div>
-    </section>
-
-    <section id="publications">
-      <h2>Publications</h2>
-      <ol class="publications">
-        <li><strong>CRAFT: Exploiting Precharge Cost Asymmetry for Adaptive DRAM Row Buffer Management.</strong><br /><u>Xu Han</u>, Ziyang Liu, Weitong Wang, Yuyangheng Wang, and Fuxin Zhang. <em>APPT 2026</em>.</li>
-        <li><strong>CoVE: Estimating Value-Predictor Coverage from Workload Entropy.</strong><br />Ziyang Liu, <u>Xu Han</u>, Junyu Yue, Chongxi Wang, and Fuxin Zhang. <em>ICCD 2026</em>.</li>
-        <li><strong>PSqueue: An Enhanced Memory Scheduling Queue Architecture for Multi-Threaded Streaming Memory Access.</strong><br /><u>Xu Han</u>, Weitong Wang, Yuyangheng Wang, and Huandong Wang. <em>HPCC 2024</em>.</li>
-      </ol>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <div class="entries">
-        <div class="entry"><span class="date">Jul. 2022–May 2025</span><p><strong>Loongson Technology</strong>, Digital Design Intern. Memory controller architecture and RTL.</p></div>
-      </div>
-    </section>
+    <div class="blog-list">
+      <a href="./blog/keeping-notes/">
+        <time datetime="2026-08-21">Aug 21, 2026</time>
+        <div><h2>On Keeping Technical Notes</h2><p>Why the reasoning behind a result is often more valuable than the result itself.</p></div>
+        <span>Read →</span>
+      </a>
+    </div>
   </div>
 </BaseLayout>

@@ -10,20 +10,24 @@ interface Props {
 
 const {
   title,
-  description = "Xu Han is a Ph.D. candidate working on memory systems, computer architecture, and performance modeling.",
+  description,
   locale = "en",
   alternatePath = locale === "zh" ? "../" : "./zh/"
 } = Astro.props;
 const pathname = Astro.url.pathname;
 const isZh = locale === "zh";
-const pageTitle = title ? `${title} — ${isZh ? "徐晗" : "Xu Han"}` : isZh ? "徐晗 — 计算机体系结构" : "Xu Han — Computer Architecture";
+const siteName = isZh ? "徐晗的博客" : "Xu Han's Blog";
+const pageTitle = title ? `${title} — ${siteName}` : siteName;
+const pageDescription = description ?? (isZh
+  ? "关于存储系统、性能分析与研究方法的技术笔记。"
+  : "Technical notes on memory systems, performance analysis, and research practice.");
 const depth = pathname.split("/").filter(Boolean).length;
 const localeHome = isZh
   ? depth <= 1 ? "./" : "../".repeat(depth - 1)
   : depth === 0 ? "./" : "../".repeat(depth);
 const labels = isZh
-  ? { about: "关于", blog: "博客", language: "EN" }
-  : { about: "About", blog: "Blog", language: "中文" };
+  ? { blog: "博客", language: "EN" }
+  : { blog: "Blog", language: "中文" };
 ---
 
 <!doctype html>
@@ -31,15 +35,14 @@ const labels = isZh
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <meta name="theme-color" content="#ffffff" />
     <title>{pageTitle}</title>
   </head>
   <body>
     <header class="site-header shell">
-      <a class="brand" href={localeHome} aria-label={isZh ? "主页" : "Home"}>{isZh ? "徐晗" : "Xu Han"}</a>
+      <a class="brand" href={localeHome} aria-label={isZh ? "主页" : "Home"}>{siteName}</a>
       <nav aria-label="Primary navigation">
-        <a href={`${localeHome}#about`}>{labels.about}</a>
         <a href={`${localeHome}blog/`}>{labels.blog}</a>
         <a class="language-link" href={alternatePath} lang={isZh ? "en" : "zh-CN"}>{labels.language}</a>
       </nav>
@@ -49,7 +52,6 @@ const labels = isZh
     </main>
     <footer class="site-footer shell">
       <span>© 2026 {isZh ? "徐晗" : "Xu Han"}</span>
-      <a href="mailto:xuhan.2333@gmail.com">xuhan.2333@gmail.com</a>
     </footer>
   </body>
 </html>
