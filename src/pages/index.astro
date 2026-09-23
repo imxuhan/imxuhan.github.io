@@ -1,19 +1,30 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPosts, formatDate } from "../lib/posts";
+
+const posts = await getPosts("en");
 ---
 
 <BaseLayout alternatePath="./zh/">
-  <div class="page shell">
-    <header class="page-head">
-      <h1>Blog</h1>
-      <p>Notes on memory systems, performance analysis, and research practice.</p>
-    </header>
-    <div class="blog-list">
-      <a href="./blog/keeping-notes/">
-        <time datetime="2026-08-21">Aug 21, 2026</time>
-        <div><h2>On Keeping Technical Notes</h2><p>Why the reasoning behind a result is often more valuable than the result itself.</p></div>
-        <span>Read →</span>
-      </a>
-    </div>
-  </div>
+  <section class="about">
+    <h1>About Me</h1>
+    <p>Into anything beautiful.</p>
+    <p>I am an SoC engineer, mostly working on DDR and the memory subsystem.</p>
+  </section>
+
+  <section class="posts">
+    <h2>Posts</h2>
+    {posts.length === 0 ? (
+      <p class="empty">Nothing here yet.</p>
+    ) : (
+      <ul class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a href={`./blog/${post.slug}/`}>{post.data.title}</a>
+            <time datetime={post.data.date.toISOString().slice(0, 10)}>{formatDate(post.data.date, "en")}</time>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
 </BaseLayout>

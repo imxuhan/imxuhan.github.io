@@ -3,55 +3,38 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
-  description?: string;
   locale?: "en" | "zh";
   alternatePath?: string;
 }
 
-const {
-  title,
-  description,
-  locale = "en",
-  alternatePath = locale === "zh" ? "../" : "./zh/"
-} = Astro.props;
-const pathname = Astro.url.pathname;
+const { title, locale = "en", alternatePath = locale === "zh" ? "../" : "./zh/" } = Astro.props;
 const isZh = locale === "zh";
-const siteName = isZh ? "徐晗的博客" : "Xu Han's Blog";
-const pageTitle = title ? `${title} — ${siteName}` : siteName;
-const pageDescription = description ?? (isZh
-  ? "关于存储系统、性能分析与研究方法的技术笔记。"
-  : "Technical notes on memory systems, performance analysis, and research practice.");
-const depth = pathname.split("/").filter(Boolean).length;
+const siteName = isZh ? "徐晗" : "Xu Han";
+const pageTitle = title ? `${title} · ${siteName}` : siteName;
+const depth = Astro.url.pathname.split("/").filter(Boolean).length;
 const localeHome = isZh
   ? depth <= 1 ? "./" : "../".repeat(depth - 1)
   : depth === 0 ? "./" : "../".repeat(depth);
-const labels = isZh
-  ? { blog: "博客", language: "EN" }
-  : { blog: "Blog", language: "中文" };
 ---
 
 <!doctype html>
-<html lang={locale === "zh" ? "zh-CN" : "en"}>
+<html lang={isZh ? "zh-CN" : "en"}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={pageDescription} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
     <title>{pageTitle}</title>
   </head>
   <body>
-    <header class="site-header shell">
-      <a class="brand" href={localeHome} aria-label={isZh ? "主页" : "Home"}>{siteName}</a>
-      <nav aria-label="Primary navigation">
-        <a href={`${localeHome}blog/`}>{labels.blog}</a>
-        <a class="language-link" href={alternatePath} lang={isZh ? "en" : "zh-CN"}>{labels.language}</a>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer class="site-footer shell">
-      <span>© 2026 {isZh ? "徐晗" : "Xu Han"}</span>
-    </footer>
+    <div class="shell">
+      <header class="site-header">
+        <a class="brand" href={localeHome}>{siteName}</a>
+        <a class="lang" href={alternatePath} lang={isZh ? "en" : "zh-CN"}>{isZh ? "EN" : "中文"}</a>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">© 2026 {siteName}</footer>
+    </div>
   </body>
 </html>

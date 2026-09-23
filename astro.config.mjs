@@ -3,5 +3,11 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://imxuhan.github.io",
   output: "static",
-  trailingSlash: "always"
+  trailingSlash: "always",
+  markdown: {
+    shikiConfig: {
+      themes: { light: "github-light", dark: "github-dark-dimmed" },
+      defaultColor: false
+    }
+  }
 });
